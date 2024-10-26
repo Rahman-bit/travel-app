@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
 import { CustomerService } from './customer.service';
 import { User } from './dto/customer.dto';
 // import { UpdateCustomerDto } from './dto/update-customer.dto';
@@ -16,19 +16,18 @@ export class CustomerController {
   async findAll() {
     return await this.customerService.getAllUsers();
   }
-
-  @Get(':id')
+  @Get('customer/:id')
   findOne(@Param('id') id: string) {
-    return this.customerService.findOne(+id);
+    return this.customerService.getUserById(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCustomerDto: User) {
-    return this.customerService.update(+id, updateCustomerDto);
+  @Put('customer/:id')
+  async updateLead(@Param('id') id: string, @Body() updateLeadDto: User) {
+   return await this.customerService.updateCustomer(id, updateLeadDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.customerService.remove(+id);
-  }
+  @Delete('customer/:id')
+  async remove(@Param('id') id: string) {
+      return await this.customerService.deleteLead(id);
+    }
 }

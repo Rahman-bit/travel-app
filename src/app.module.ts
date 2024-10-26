@@ -4,12 +4,18 @@ import { AppService } from './app.service';
 import { ItineraryModule } from './itinerary/itinerary.module';
 import { CustomerModule } from './customer/customer.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
+import { InvoiceModule } from './invoice/invoice.module';
+import { LeadModule } from './lead/lead.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     ItineraryModule,
     CustomerModule,
-    MongooseModule.forRoot('mongodb+srv://syed456abdul:Kjie5z1ewYFdbxpr@cluster0.7hm7h.mongodb.net/travel-app?retryWrites=true&w=majority&appName=Cluster0')
+    MongooseModule.forRoot(process.env.MONGOOSE_URL),
+    InvoiceModule,
+    LeadModule
   ],
   controllers: [AppController],
   providers: [AppService],
