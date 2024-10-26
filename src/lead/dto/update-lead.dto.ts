@@ -1,4 +1,4 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateLeadDto } from './create-lead.dto';
+// import { PartialType } from '@nestjs/mapped-types';
+// import { CreateLeadDto } from './lead.dto';
 
-export class UpdateLeadDto extends PartialType(CreateLeadDto) {}
+// export class UpdateLeadDto extends PartialType(CreateLeadDto) {}
